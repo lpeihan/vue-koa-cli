@@ -1,3 +1,5 @@
+'use strict';
+
 const redis = require('redis');
 const coRedis = require('co-redis');
 const logger = require('../utils/logger')(__filename);

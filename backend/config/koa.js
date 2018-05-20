@@ -1,3 +1,5 @@
+'use strict';
+
 const Koa = require('koa');
 const path = require('path');
 const onerror = require('koa-onerror');
