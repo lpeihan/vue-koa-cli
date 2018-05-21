@@ -8,7 +8,15 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarsExample05">
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav mr-auto" v-if="isAuthenticated">
+            <li class="nav-item">
+              <a class="nav-link">{{user.username}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:;" @click="logout">Logout</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mr-auto" v-else>
             <li class="nav-item">
               <a class="nav-link" href="javascript:;" @click="$router.push('/signup')">Signup</a>
             </li>
@@ -21,3 +29,22 @@
   </nav>
   </div>
 </template>
+
+<script>
+import { mapState } from 'vuex';
+
+export default {
+  computed: {
+    ...mapState({
+      user: state => state.auth.user,
+      isAuthenticated: state => state.auth.isAuthenticated
+    })
+  },
+  methods: {
+    async logout() {
+      await this.$store.dispatch('auth/logout');
+      this.$router.push('/');
+    }
+  }
+};
+</script>

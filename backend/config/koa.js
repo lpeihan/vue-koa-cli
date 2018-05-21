@@ -25,7 +25,7 @@ module.exports = (config) => {
 
       const userCookie = ctx.user
         ? encodeURIComponent(JSON.stringify(ctx.user))
-        : null;
+        : undefined;
 
       ctx.cookies.set(`${config.app.name}.user`, userCookie, {
         httpOnly: false,

@@ -80,8 +80,8 @@ export default {
   methods: {
     async signup() {
       try {
-        const response = await this.$http.post('users/signup', this.model);
-        console.dir(response);
+        await this.$store.dispatch('auth/signup', this.model);
+        this.$router.push('/login');
       } catch (err) {
         this.errors = err.response.data;
       }

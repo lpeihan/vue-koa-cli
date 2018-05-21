@@ -47,8 +47,9 @@ export default {
     };
   },
   methods: {
-    login() {
-      this.$http.post('users/login', this.model);
+    async login() {
+      await this.$store.dispatch('auth/login', this.model);
+      this.$router.push('/');
     }
   }
 };

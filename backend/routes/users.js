@@ -36,9 +36,22 @@ router.post('/signup', async (ctx) => {
  * login
  */
 router.post('/login', async (ctx) => {
-  const user = await passport.login('local', ctx);
+  try {
+    const user = await passport.login('local', ctx);
 
-  ctx.body = user;
+    ctx.body = user;
+  } catch (err) {
+    handleError('login failed', err, ctx);
+  }
+});
+
+router.delete('/logout', async (ctx) => {
+  try {
+    await passport.logout(ctx);
+    ctx.body = null;
+  } catch (err) {
+    handleError('logout failed', err, ctx);
+  }
 });
 
 module.exports = router;
