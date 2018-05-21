@@ -3,6 +3,7 @@
 const Koa = require('koa');
 const path = require('path');
 const onerror = require('koa-onerror');
+const bodyparser = require('koa-bodyparser');
 
 const session = require('./session');
 const logger = require('../utils/logger')(__filename);
@@ -12,11 +13,15 @@ const koaStatic = require('koa-static');
 module.exports = (config) => {
   const app = new Koa();
 
+  app.keys = config.cookie.keys;
+
   onerror(app);
 
   app
+    .use(bodyparser())
     .use(koaStatic(path.join(__dirname, '..', `../${config.dir.frontend}`)))
     .use(koaStatic(path.join(__dirname, '..', `../${config.dir.public}`)))
+
     .use(async (ctx, next) => {
       const start = new Date();
       await next();

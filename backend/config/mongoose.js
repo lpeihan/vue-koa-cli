@@ -7,7 +7,8 @@ module.exports = (config) => {
   const mongoConfig = config.mongo;
   const mongoStr = `mongodb://${mongoConfig.host}:${mongoConfig.port}/${config.app.name}`;
 
-  const db = mongoose.createConnection(mongoStr);
+  mongoose.connect(mongoStr);
+  const db = mongoose.connection;
 
   db.promise = new Promise((resolve, reject) => {
     db.once('open', () => {

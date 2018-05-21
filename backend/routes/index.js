@@ -17,7 +17,6 @@ const router = new Router();
 router
   .use('/api/users', users.routes(), users.allowedMethods())
 
-  .all('/', html)
-  .all('/*', html);
+  .all('/', html);
 
 module.exports = router;

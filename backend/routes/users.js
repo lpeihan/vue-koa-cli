@@ -9,4 +9,8 @@ router.get('/', async (ctx, next) => {
   ctx.body = users;
 });
 
+router.post('/signup', async (ctx, next) => {
+  ctx.body = 'signup';
+});
+
 module.exports = router;

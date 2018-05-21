@@ -22,7 +22,7 @@ gulp.task('webpack-dev-server', (done) => {
   const compiler = webpack(webpackDevConf);
   const server = new WebpackDevServer(compiler, {
     proxy: {
-      '/': `http://localhost:${config.port}`
+      '/api': `http://localhost:${config.port}`
     },
     hot: true,
     inline: true,
@@ -51,6 +51,7 @@ gulp.task('nodemon', ['eslint:backend'], () => {
   nodemon({
     script: packageConfig.main,
     watch: [
+      packageConfig.main,
       `${dir.backend}/`,
       `${dir.config}/`
     ],
