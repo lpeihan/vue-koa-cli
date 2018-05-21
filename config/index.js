@@ -26,5 +26,13 @@ module.exports = {
   log: {
     level: 'trace'
   },
+  dir: {
+    backend: 'backend',
+    frontend: 'frontend',
+    config: 'config',
+    logs: 'logs',
+    dist: 'dist',
+    public: 'public'
+  },
   app
 };

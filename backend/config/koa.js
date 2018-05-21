@@ -4,8 +4,10 @@ const Koa = require('koa');
 const path = require('path');
 const onerror = require('koa-onerror');
 
+const session = require('./session');
 const logger = require('../utils/logger')(__filename);
 const router = require('../routes');
+const koaStatic = require('koa-static');
 
 module.exports = (config) => {
   const app = new Koa();
@@ -13,13 +15,15 @@ module.exports = (config) => {
   onerror(app);
 
   app
-    .use(require('koa-static')(path.join(__dirname, '..', '../frontend')))
+    .use(koaStatic(path.join(__dirname, '..', `../${config.dir.frontend}`)))
+    .use(koaStatic(path.join(__dirname, '..', `../${config.dir.public}`)))
     .use(async (ctx, next) => {
       const start = new Date();
       await next();
       const ms = new Date() - start;
       logger.trace(`${ctx.method} ${ctx.url} - ${ms}ms`);
-    });
+    })
+    .use(session(config, app));
 
   app
     .use(router.routes())

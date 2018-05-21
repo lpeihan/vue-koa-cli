@@ -1,14 +1,15 @@
 'use strict';
 
 const { resolve, assetsPath, cssLoader, vueLoaderConf } = require('./utils');
+const { dir } = require('../config');
 
 module.exports = {
-  context: resolve('frontend'),
+  context: resolve(dir.frontend),
   entry: {
     app: ['./main.js']
   },
   output: {
-    path: resolve('dist/frontend'),
+    path: resolve(`${dir.dist}/${dir.frontend}`),
     filename: assetsPath('js/[name].js'),
     publicPath: '/'
   },
@@ -34,7 +35,7 @@ module.exports = {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: [resolve('frontend')],
+        include: [resolve(dir.frontend)],
         options: {
           emitWarning: true,
           configFile: 'frontend/.eslintrc.js'

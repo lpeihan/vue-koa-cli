@@ -5,13 +5,14 @@ const chalk = require('chalk');
 
 const buildFrontend = require('./frontend.build');
 const packageConfig = require('../package.json');
+const { dir } = require('../config');
 
 gulp.task('build:frontend', (done) => {
   buildFrontend(done);
 });
 
 gulp.task('copy', () => gulp.src([
-  `{backend,config}/**/*.*`,
+  `{${dir.backend},${dir.config},${dir.public}}/**/*.*`,
   packageConfig.main,
   'package.json'
 ])

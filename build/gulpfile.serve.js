@@ -9,6 +9,7 @@ const packageConfig = require('../package.json');
 const webpackDevConf = require('./webpack.dev.conf');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('../config');
+const dir = config.dir;
 
 const url = `http://localhost:${config.port + 1}`;
 
@@ -21,7 +22,7 @@ gulp.task('webpack-dev-server', (done) => {
   const compiler = webpack(webpackDevConf);
   const server = new WebpackDevServer(compiler, {
     proxy: {
-      '/api': `http://localhost:${config.port}`
+      '/': `http://localhost:${config.port}`
     },
     hot: true,
     inline: true,
@@ -50,8 +51,8 @@ gulp.task('nodemon', ['eslint:backend'], () => {
   nodemon({
     script: packageConfig.main,
     watch: [
-      'backend/',
-      'config/'
+      `${dir.backend}/`,
+      `${dir.config}/`
     ],
     ext: 'js',
     env: {
@@ -63,8 +64,8 @@ gulp.task('nodemon', ['eslint:backend'], () => {
 gulp.task('eslint:backend', () => {
   gulp.src([
     packageConfig.main,
-    'backend/**/*.js',
-    'config/**/*.js'
+    `${dir.backend}/**/*.js`,
+    `${dir.config}/**/*.js`
   ])
     .pipe(eslint({ configFile: '.eslintrc.js' }))
     .pipe(eslint.format())

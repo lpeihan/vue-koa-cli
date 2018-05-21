@@ -1,6 +1,6 @@
 <template>
-  <div class="hello">
-    {{users}}
+  <div class="jumbotron">
+    hello
   </div>
 </template>
 
