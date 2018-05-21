@@ -13,7 +13,7 @@
               <a class="nav-link" href="javascript:;" @click="$router.push('/signup')">Signup</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="javascript:;">Login</a>
+              <a class="nav-link" href="javascript:;" @click="$router.push('/login')">Login</a>
             </li>
           </ul>
         </div>

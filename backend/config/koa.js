@@ -9,6 +9,7 @@ const session = require('./session');
 const logger = require('../utils/logger')(__filename);
 const router = require('../routes');
 const koaStatic = require('koa-static');
+const passport = require('./passport');
 
 module.exports = (config) => {
   const app = new Koa();
@@ -19,6 +20,20 @@ module.exports = (config) => {
 
   app
     .use(bodyparser())
+    .use(async (ctx, next) => {
+      await next();
+
+      const userCookie = ctx.user
+        ? encodeURIComponent(JSON.stringify(ctx.user))
+        : null;
+
+      ctx.cookies.set(`${config.app.name}.user`, userCookie, {
+        httpOnly: false,
+        maxAge: config.cookie.maxAge,
+        signed: false,
+        overwrite: true
+      });
+    })
     .use(koaStatic(path.join(__dirname, '..', `../${config.dir.frontend}`)))
     .use(koaStatic(path.join(__dirname, '..', `../${config.dir.public}`)))
 
@@ -28,7 +43,9 @@ module.exports = (config) => {
       const ms = new Date() - start;
       logger.trace(`${ctx.method} ${ctx.url} - ${ms}ms`);
     })
-    .use(session(config, app));
+
+    .use(session(config, app))
+    .use(passport.middleware());
 
   app
     .use(router.routes())
