@@ -5,16 +5,7 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      users: []
-    };
-  },
-  async mounted() {
-    this.users = await this.$http.get('/users');
-  }
-};
+export default {};
 </script>
 
 <style lang="stylus">

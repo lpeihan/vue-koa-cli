@@ -25,7 +25,8 @@
     "lodash": "^4.17.10",
     "log4js": "^2.6.1",
     "mongoose": "^5.1.1",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "validator": "^10.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^8.3.0",
