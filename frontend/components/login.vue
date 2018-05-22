@@ -48,13 +48,20 @@ export default {
   },
   methods: {
     async login() {
-      await this.$store.dispatch('login', this.model);
+      try {
+        await this.$store.dispatch('login', this.model);
 
-      this.$store.dispatch('addMessage', {
-        text: 'login success'
-      });
+        this.$store.dispatch('addMessage', {
+          text: 'login success'
+        });
 
-      this.$router.push('/');
+        this.$router.push('/');
+      } catch (e) {
+        this.$store.dispatch('addMessage', {
+          type: 'danger',
+          text: 'login failed'
+        });
+      }
     }
   }
 };

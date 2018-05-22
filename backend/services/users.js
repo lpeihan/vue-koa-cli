@@ -6,7 +6,7 @@ const User = require('../models/user');
 
 const { isEmpty } = require('lodash');
 
-exports.validateSignup = async function validateSignup(user) {
+exports.validateSignup = async function(user) {
   let errors = {};
 
   if (validator.isEmpty(user.username)) {

@@ -42,13 +42,20 @@ export default {
   },
   methods: {
     async logout() {
-      await this.$store.dispatch('logout');
+      try {
+        await this.$store.dispatch('logout');
 
-      this.$store.dispatch('addMessage', {
-        text: 'logout success'
-      });
+        this.$store.dispatch('addMessage', {
+          text: 'logout success'
+        });
 
-      this.$router.push('/');
+        this.$router.push('/');
+      } catch (e) {
+        this.$store.dispatch('addMessage', {
+          type: 'danger',
+          text: 'logout failed'
+        });
+      }
     }
   }
 };
