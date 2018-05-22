@@ -2,7 +2,6 @@ import isEmpty from 'lodash/isEmpty';
 import axios from 'axios';
 
 import pkg from '../../../package.json';
-
 import { getCookie } from '../../utils';
 
 const state = {
@@ -24,14 +23,10 @@ const actions = {
     return axios.post('users/signup', user);
   },
   login({ commit }, user) {
-    return axios.post('users/login', user).then((res) => {
-      commit('setUser', user);
-    });
+    return axios.post('users/login', user);
   },
   logout({ commit }) {
-    return axios.delete(`/users/logout`).then(() => {
-      commit('setUser', {});
-    });
+    return axios.delete('/users/logout');
   },
   setUser({ commit }) {
     let user;
@@ -43,7 +38,6 @@ const actions = {
 };
 
 export default {
-  namespaced: true,
   state,
   getters,
   mutations,

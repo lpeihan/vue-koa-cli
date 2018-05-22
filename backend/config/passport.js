@@ -8,7 +8,8 @@ const PassportError = passport.PassportError;
 
 passport.serializeUser(user => Promise.resolve(user ? user.id : undefined));
 passport.deserializeUser(async (session) => {
-  const user = await User.findById(session);
+  const user = (await User.findById(session))._info;
+
   return session && user;
 });
 

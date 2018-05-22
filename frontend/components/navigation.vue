@@ -42,7 +42,12 @@ export default {
   },
   methods: {
     async logout() {
-      await this.$store.dispatch('auth/logout');
+      await this.$store.dispatch('logout');
+
+      this.$store.dispatch('addMessage', {
+        text: 'logout success'
+      });
+
       this.$router.push('/');
     }
   }

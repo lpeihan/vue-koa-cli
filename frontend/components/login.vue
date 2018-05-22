@@ -48,7 +48,12 @@ export default {
   },
   methods: {
     async login() {
-      await this.$store.dispatch('auth/login', this.model);
+      await this.$store.dispatch('login', this.model);
+
+      this.$store.dispatch('addMessage', {
+        text: 'login success'
+      });
+
       this.$router.push('/');
     }
   }

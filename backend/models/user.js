@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 const Promise = require('bluebird');
+const _ = require('lodash');
 
 const pbkdf2 = Promise.promisify(crypto.pbkdf2);
 
@@ -32,6 +33,19 @@ UserSchema
 /**
  * Virtuals
  */
+UserSchema
+  .virtual('_info')
+  .get(function() {
+    const result = _.pick(this, [
+      'id',
+      'username',
+      'email',
+      'create_date',
+      'update_date'
+    ]);
+    return result;
+  });
+
 UserSchema
   .virtual('password')
   .set(function(password) {

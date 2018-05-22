@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <navigation />
+    <messages />
     <transition name="fade" mode="out-in">
       <router-view class="container"></router-view>
     </transition>
@@ -9,10 +10,12 @@
 
 <script>
 import Navigation from './components/navigation';
+import Messages from './components/messages';
 
 export default {
   components: {
-    Navigation
+    Navigation,
+    Messages
   }
 };
 </script>

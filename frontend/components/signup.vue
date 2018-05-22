@@ -80,7 +80,12 @@ export default {
   methods: {
     async signup() {
       try {
-        await this.$store.dispatch('auth/signup', this.model);
+        await this.$store.dispatch('signup', this.model);
+
+        this.$store.dispatch('addMessage', {
+          text: 'signup success'
+        });
+
         this.$router.push('/login');
       } catch (err) {
         this.errors = err.response.data;

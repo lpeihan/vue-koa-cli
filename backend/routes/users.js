@@ -22,7 +22,7 @@ router.post('/signup', async (ctx) => {
     if (isValid) {
       const user = new User({ username, password, email });
       await user.save();
-      ctx.body = user;
+      ctx.body = user._info;
     } else {
       ctx.status = 400;
       ctx.body = errors;
@@ -45,6 +45,9 @@ router.post('/login', async (ctx) => {
   }
 });
 
+/*
+ * logout
+ */
 router.delete('/logout', async (ctx) => {
   try {
     await passport.logout(ctx);

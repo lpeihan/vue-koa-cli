@@ -2,15 +2,17 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import auth from './modules/auth';
+import messages from './modules/messages';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   modules: {
-    auth
+    auth,
+    messages
   }
 });
 
-store.dispatch('auth/setUser');
+store.dispatch('setUser');
 
 export default store;
