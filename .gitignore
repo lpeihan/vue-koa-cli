@@ -1,8 +1,0 @@
-# Distribute packages
-dist
-
-# Dependency directory
-node_modules
-
-# Logs
-logs
