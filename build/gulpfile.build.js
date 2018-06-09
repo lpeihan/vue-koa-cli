@@ -34,6 +34,7 @@ gulp.task('building', (done) => {
     'build:frontend',
     'eslint:backend',
     'copy',
+    'node_modules',
     'finished',
     done
   );
