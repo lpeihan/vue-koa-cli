@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.0a4b47be9508308861c0c4f1ff586ab7.css"],"names":[],"mappings":"AACA,qCAEE,SAAW,CACZ,AACD,gDAEE,sBAAyB,CAC1B","file":"app.0a4b47be9508308861c0c4f1ff586ab7.css","sourcesContent":["\n#app .fade-enter,\n#app .fade-leave-to {\n  opacity: 0;\n}\n#app .fade-enter-active,\n#app .fade-leave-active {\n  transition: opacity 0.3s;\n}"]}
